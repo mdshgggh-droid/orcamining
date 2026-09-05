@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ORCA Mining - Upgrade</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    background:
+    radial-gradient(circle at top,#172033 0%,#080b12 45%,#030407 100%);
+    color:white;
+    font-family:Arial,sans-serif;
+    min-height:100vh;
+    padding-bottom:95px;
+}
+
+.header{
+    text-align:center;
+    padding:22px 15px 12px;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:900;
+    color:#ffd84d;
+    letter-spacing:2px;
+    text-shadow:0 0 15px #ffb300;
+}
+
+.subtitle{
+    margin-top:6px;
+    color:#9da8bb;
+    font-size:13px;
+}
+
+.balance{
+    margin:15px;
+    padding:18px;
+    border:1px solid #3c4659;
+    border-radius:18px;
+    background:linear-gradient(145deg,#171d29,#0c1018);
+    text-align:center;
+    box-shadow:0 8px 30px #0008;
+}
+
+.balance small{
+    color:#8d98aa;
+}
+
+.balance h2{
+    color:#ffd84d;
+    font-size:28px;
+    margin-top:5px;
+}
+
+.speed{
+    margin-top:6px;
+    color:#67d8ff;
+    font-weight:bold;
+}
+
+.channel{
+    display:block;
+    margin:15px;
+    padding:15px;
+    text-align:center;
+    text-decoration:none;
+    color:#fff;
+    font-weight:bold;
+    border-radius:15px;
+    background:linear-gradient(135deg,#008cff,#0058ff);
+    box-shadow:0 5px 20px #006eff66;
+}
+
+.container{
+    padding:0 14px;
+}
+
+.upgrade-card{
+    position:relative;
+    display:flex;
+    align-items:center;
+    gap:15px;
+    margin-bottom:15px;
+    padding:13px;
+    min-height:145px;
+    border-radius:22px;
+    border:1px solid #30394a;
+    background:linear-gradient(145deg,#161d29,#090d14);
+    box-shadow:0 8px 25px #0009;
+    overflow:hidden;
+}
+
+.upgrade-card::before{
+    content:"";
+    position:absolute;
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    background:#ffd00022;
+    filter:blur(25px);
+    left:-30px;
+    top:10px;
+}
+
+.visual{
+    width:125px;
+    height:120px;
+    flex-shrink:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:18px;
+    background:#05070b;
+    border:1px solid #424b5b;
+    overflow:hidden;
+}
+
+.visual svg{
+    width:115px;
+    height:110px;
+}
+
+.info{
+    flex:1;
+    position:relative;
+    z-index:2;
+}
+
+.level{
+    font-size:12px;
+    color:#8c99ad;
+    font-weight:bold;
+}
+
+.name{
+    font-size:18px;
+    font-weight:900;
+    margin:4px 0 8px;
+}
+
+.power{
+    color:#62d9ff;
+    font-size:14px;
+    font-weight:bold;
+}
+
+.cost{
+    color:#ffd84d;
+    margin:6px 0 10px;
+    font-weight:bold;
+}
+
+.buy{
+    width:100%;
+    border:0;
+    padding:11px;
+    border-radius:12px;
+    color:#111;
+    font-weight:900;
+    background:linear-gradient(135deg,#ffe873,#ffb900);
+    cursor:pointer;
+}
+
+.buy:active{
+    transform:scale(.96);
+}
+
+.buy:disabled{
+    background:#303846;
+    color:#8d96a4;
+    cursor:not-allowed;
+}
+
+.locked{
+    opacity:.55;
+}
+
+.badge{
+    position:absolute;
+    top:10px;
+    right:10px;
+    font-size:10px;
+    padding:5px 8px;
+    border-radius:8px;
+    background:#202938;
+    color:#9da8bb;
+}
+
+.nav{
+    position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    height:78px;
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    background:#080b12ee;
+    backdrop-filter:blur(15px);
+    border-top:1px solid #293142;
+    z-index:99;
+}
+
+.nav a{
+    text-decoration:none;
+    color:#8994a7;
+    text-align:center;
+    font-size:11px;
+}
+
+.nav a div{
+    font-size:25px;
+    margin-bottom:3px;
+}
+
+.nav .active{
+    color:#ffd84d;
+}
+
+@media(max-width:380px){
+    .visual{
+        width:105px;
+        height:105px;
+    }
+
+    .visual svg{
+        width:98px;
+        height:98px;
+    }
+
+    .upgrade-card{
+        gap:10px;
+    }
+
+    .name{
+        font-size:15px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <div class="logo">ORCA MINING</div>
+    <div class="subtitle">Upgrade Your Mining Power</div>
+</div>
+
+<div class="balance">
+    <small>YOUR BALANCE</small>
+    <h2 id="balance">0 COINS</h2>
+    <div class="speed">
+        MINING SPEED: <span id="speed">200</span> COINS/HOUR
+    </div>
+</div>
+
+<a class="channel" href="https://t.me/orcamining" target="_blank">
+    📢 JOIN ORCA MINING CHANNEL
+</a>
+
+<div class="container" id="upgrades"></div>
+
+<div class="nav">
+    <a href="index.html">
+        <div>⛏️</div>
+        Mining
+    </a>
+
+    <a href="upgrade.html" class="active">
+        <div>⚡</div>
+        Upgrade
+    </a>
+
+    <a href="referral.html">
+        <div>👥</div>
+        Referral
+    </a>
+
+    <a href="ranking.html">
+        <div>🏆</div>
+        Ranking
+    </a>
+</div>
+
+<script>
+
+/* =========================
+   SAME DATA AS MINING PAGE
+========================= */
+
+let balance = Number(localStorage.getItem("orcaBalance")) || 0;
+let speed = Number(localStorage.getItem("orcaSpeed")) || 200;
+
+let currentLevel =
+    Number(localStorage.getItem("orcaUpgradeLevel")) || 0;
+
+
+/* =========================
+   UPGRADE DATA
+========================= */
+
+const upgrades = [];
+
+for(let i=1;i<=50;i++){
+
+    let cost = Math.floor(1000 * Math.pow(1.35,i-1));
+
+    let increase = i * 100;
+
+    let names = [
+        "STONE MINER",
+        "IRON MINER",
+        "COPPER MINER",
+        "SILVER MINER",
+        "GOLD MINER",
+        "GOLD DIGGER",
+        "DEEP MINER",
+        "DIAMOND MINER",
+        "CRYSTAL MINER",
+        "MASTER MINER"
+    ];
+
+    let name = names[(i-1)%names.length];
+
+    if(i === 50){
+        name = "🐋 BLUE WHALE MINING";
+    }
+
+    upgrades.push({
+        level:i,
+        name:name,
+        cost:cost,
+        increase:increase
+    });
+}
+
+
+/* =========================
+   MINING SVG
+========================= */
+
+function miningSVG(level){
+
+    if(level === 50){
+
+        return `
+        <svg viewBox="0 0 200 150"
+             xmlns="http://www.w3.org/2000/svg">
+
+            <defs>
+                <linearGradient id="whale" x1="0" x2="1">
+                    <stop offset="0" stop-color="#1a8cff"/>
+                    <stop offset="1" stop-color="#6ee7ff"/>
+                </linearGradient>
+
+                <filter id="glow">
+                    <feGaussianBlur stdDeviation="4"
+                                    result="blur"/>
+                    <feMerge>
+                        <feMergeNode in="blur"/>
+                        <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                </filter>
+            </defs>
+
+            <circle cx="100" cy="75" r="65"
+                    fill="#062447"/>
+
+            <path d="
+            M35 88
+            C48 48 110 40 145 63
+            C165 76 169 98 150 108
+            C128 121 78 119 52 105
+            C42 100 35 94 35 88Z"
+            fill="url(#whale)"
+            filter="url(#glow)"/>
+
+            <path d="
+            M145 66
+            C170 55 185 67 179 82
+            C173 94 158 94 148 87Z"
+            fill="#55cfff"/>
+
+            <path d="
+            M77 52
+            C67 32 82 28 95 45
+            C101 52 101 57 101 60Z"
+            fill="#65dfff"/>
+
+            <circle cx="137" cy="73"
+                    r="5"
+                    fill="white"/>
+
+            <circle cx="139" cy="73"
+                    r="2"
+                    fill="#00111f"/>
+
+            <text x="100" y="140"
+                  text-anchor="middle"
+                  fill="#ffd84d"
+                  font-size="13"
+                  font-weight="bold">
+                BLUE WHALE
+            </text>
+        </svg>`;
+    }
+
+
+    return `
+    <svg viewBox="0 0 200 150"
+         xmlns="http://www.w3.org/2000/svg">
+
+        <defs>
+            <linearGradient id="rock${level}"
+                            x1="0" x2="1">
+
+                <stop offset="0"
+                      stop-color="#493014"/>
+
+                <stop offset=".55"
+                      stop-color="#a96b18"/>
+
+                <stop offset="1"
+                      stop-color="#ffd84d"/>
+            </linearGradient>
+
+            <filter id="g${level}">
+                <feGaussianBlur
+                    stdDeviation="3"
+                    result="b"/>
+                <feMerge>
+                    <feMergeNode in="b"/>
+                    <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+            </filter>
+        </defs>
+
+        <rect width="200"
+              height="150"
+              rx="15"
+              fill="#070a0e"/>
+
+        <path d="
+        M25 120
+        L35 60
+        L65 35
+        L115 45
+        L160 30
+        L180 75
+        L170 120Z"
+        fill="url(#rock${level})"/>
+
+        <circle cx="62"
+                cy="70"
+                r="9"
+                fill="#ffe873"
+                filter="url(#g${level})"/>
+
+        <circle cx="120"
+                cy="90"
+                r="12"
+                fill="#ffd000"
+                filter="url(#g${level})"/>
+
+        <circle cx="145"
+                cy="57"
+                r="7"
+                fill="#fff1a3"
+                filter="url(#g${level})"/>
+
+        <line x1="40"
+              y1="30"
+              x2="125"
+              y2="115"
+              stroke="#d9a441"
+              stroke-width="8"
+              stroke-linecap="round"/>
+
+        <line x1="118"
+              y1="25"
+              x2="140"
+              y2="115"
+              stroke="#eee"
+              stroke-width="7"
+              stroke-linecap="round"/>
+
+        <path d="
+        M112 25
+        L145 25
+        L133 35
+        L120 35Z"
+        fill="#cbd5e1"/>
+
+        <text x="100"
+              y="143"
+              text-anchor="middle"
+              fill="#ffd84d"
+              font-size="13"
+              font-weight="bold">
+            MINING LEVEL ${level}
+        </text>
+
+    </svg>`;
+}
+
+
+/* =========================
+   CREATE CARDS
+========================= */
+
+const container = document.getElementById("upgrades");
+
+upgrades.forEach(item => {
+
+    const card = document.createElement("div");
+
+    card.className = "upgrade-card";
+
+    if(item.level > currentLevel + 1){
+        card.classList.add("locked");
+    }
+
+    card.innerHTML = `
+
+        <div class="visual">
+            ${miningSVG(item.level)}
+        </div>
+
+        <div class="info">
+
+            <div class="level">
+                LEVEL ${item.level}
+            </div>
+
+            <div class="name">
+                ${item.name}
+            </div>
+
+            <div class="power">
+                +${item.increase} COINS/HOUR
+            </div>
+
+            <div class="cost">
+                💰 ${item.cost.toLocaleString()} COINS
+            </div>
+
+            <button
+                class="buy"
+                id="buy${item.level}"
+                onclick="buyUpgrade(${item.level})">
+                UPGRADE
+            </button>
+
+        </div>
+    `;
+
+    container.appendChild(card);
+});
+
+
+/* =========================
+   BUY UPGRADE
+========================= */
+
+function buyUpgrade(level){
+
+    const item = upgrades[level-1];
+
+    /* Only next level can be purchased */
+
+    if(level !== currentLevel + 1){
+        alert("🔒 Upgrade the previous level first!");
+        return;
+    }
+
+
+    if(balance < item.cost){
+        alert(
+            "❌ Not enough coins!\n\n" +
+            "Required: " +
+            item.cost.toLocaleString() +
+            " COINS"
+        );
+        return;
+    }
+
+
+    /* Remove cost */
+
+    balance -= item.cost;
+
+
+    /* Increase mining speed */
+
+    speed += item.increase;
+
+
+    /* Save */
+
+    currentLevel = level;
+
+    localStorage.setItem(
+        "orcaBalance",
+        balance
+    );
+
+    localStorage.setItem(
+        "orcaSpeed",
+        speed
+    );
+
+    localStorage.setItem(
+        "orcaUpgradeLevel",
+        currentLevel
+    );
+
+
+    updateUI();
+
+    alert(
+        "✅ UPGRADE SUCCESSFUL!\n\n" +
+        "LEVEL " + level + "\n" +
+        "MINING SPEED: " +
+        speed +
+        " COINS/HOUR"
+    );
+
+    location.reload();
+}
+
+
+/* =========================
+   UPDATE UI
+========================= */
+
+function updateUI(){
+
+    document.getElementById("balance").innerText =
+        Math.floor(balance).toLocaleString() +
+        " COINS";
+
+    document.getElementById("speed").innerText =
+        speed;
+}
+
+updateUI();
+
+</script>
+
+</body>
+</html>
