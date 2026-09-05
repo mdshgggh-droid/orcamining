@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ORCA Mining - Referral</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    min-height:100vh;
+    padding-bottom:90px;
+    font-family:Arial,sans-serif;
+    color:white;
+    background:
+    radial-gradient(circle at top,#17233a,#080b12 48%,#030407);
+}
+
+.header{
+    text-align:center;
+    padding:25px 15px 15px;
+}
+
+.logo{
+    color:#ffd84d;
+    font-size:28px;
+    font-weight:900;
+    letter-spacing:2px;
+    text-shadow:0 0 18px #ffb300;
+}
+
+.subtitle{
+    color:#9da8bb;
+    font-size:13px;
+    margin-top:7px;
+}
+
+.card{
+    margin:15px;
+    padding:22px;
+    border-radius:22px;
+    border:1px solid #30394a;
+    background:linear-gradient(145deg,#171e2b,#090d14);
+    box-shadow:0 10px 35px #0009;
+}
+
+.hero{
+    text-align:center;
+}
+
+.whale{
+    width:180px;
+    height:150px;
+    margin:auto;
+}
+
+.hero h1{
+    font-size:25px;
+    margin-top:5px;
+}
+
+.hero p{
+    color:#9da8bb;
+    margin-top:8px;
+    line-height:1.5;
+}
+
+.reward{
+    margin-top:18px;
+    padding:15px;
+    text-align:center;
+    border-radius:16px;
+    background:#ffd84d12;
+    border:1px solid #ffd84d55;
+}
+
+.reward b{
+    display:block;
+    color:#ffd84d;
+    font-size:25px;
+    margin-top:5px;
+}
+
+.stats{
+    display:flex;
+    gap:12px;
+    margin-top:15px;
+}
+
+.stat{
+    flex:1;
+    text-align:center;
+    padding:17px 8px;
+    border-radius:16px;
+    background:#0b1018;
+    border:1px solid #2b3444;
+}
+
+.stat strong{
+    display:block;
+    color:#67d8ff;
+    font-size:23px;
+}
+
+.stat span{
+    color:#8e99aa;
+    font-size:11px;
+}
+
+.refbox{
+    margin-top:18px;
+}
+
+.refbox label{
+    display:block;
+    color:#9da8bb;
+    font-size:12px;
+    margin-bottom:7px;
+}
+
+.refrow{
+    display:flex;
+    gap:8px;
+}
+
+.refrow input{
+    min-width:0;
+    flex:1;
+    padding:13px;
+    border-radius:12px;
+    border:1px solid #3b4658;
+    background:#05080d;
+    color:white;
+    outline:none;
+}
+
+.copy{
+    border:0;
+    padding:0 17px;
+    border-radius:12px;
+    background:#ffd84d;
+    color:#111;
+    font-weight:900;
+}
+
+.invite{
+    width:100%;
+    margin-top:14px;
+    padding:15px;
+    border:0;
+    border-radius:14px;
+    background:linear-gradient(135deg,#008cff,#0058ff);
+    color:white;
+    font-weight:900;
+    font-size:15px;
+    box-shadow:0 5px 20px #006eff55;
+}
+
+.list-title{
+    margin-top:22px;
+    font-size:18px;
+    font-weight:900;
+}
+
+.friend{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-top:10px;
+    padding:13px;
+    border-radius:14px;
+    background:#0c1119;
+    border:1px solid #252e3d;
+}
+
+.avatar{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(135deg,#ffd84d,#ff9d00);
+    color:#111;
+    font-size:20px;
+}
+
+.friend-info{
+    flex:1;
+}
+
+.friend-info b{
+    display:block;
+}
+
+.friend-info span{
+    color:#8490a2;
+    font-size:11px;
+}
+
+.friend-reward{
+    color:#ffd84d;
+    font-weight:bold;
+}
+
+.channel{
+    display:block;
+    margin-top:18px;
+    padding:14px;
+    text-align:center;
+    text-decoration:none;
+    color:white;
+    border-radius:14px;
+    background:#168cff;
+    font-weight:bold;
+}
+
+.nav{
+    position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    height:78px;
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    background:#080b12ee;
+    backdrop-filter:blur(15px);
+    border-top:1px solid #293142;
+    z-index:99;
+}
+
+.nav a{
+    text-decoration:none;
+    color:#8994a7;
+    text-align:center;
+    font-size:11px;
+}
+
+.nav a div{
+    font-size:25px;
+    margin-bottom:3px;
+}
+
+.nav .active{
+    color:#ffd84d;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <div class="logo">ORCA MINING</div>
+    <div class="subtitle">Invite Friends & Earn Coins</div>
+</div>
+
+<div class="card hero">
+
+    <div class="whale">
+        <svg viewBox="0 0 200 150"
+             width="180"
+             height="150"
+             xmlns="http://www.w3.org/2000/svg">
+
+            <defs>
+                <linearGradient id="blue"
+                    x1="0" x2="1">
+                    <stop offset="0"
+                        stop-color="#087cff"/>
+                    <stop offset="1"
+                        stop-color="#69e7ff"/>
+                </linearGradient>
+            </defs>
+
+            <circle cx="100"
+                    cy="75"
+                    r="65"
+                    fill="#062747"/>
+
+            <path d="
+            M35 88
+            C48 48 110 40 145 63
+            C165 76 169 98 150 108
+            C128 121 78 119 52 105
+            C42 100 35 94 35 88Z"
+            fill="url(#blue)"/>
+
+            <path d="
+            M145 66
+            C171 54 185 67 179 82
+            C173 94 158 94 148 87Z"
+            fill="#53d1ff"/>
+
+            <path d="
+            M78 53
+            C68 32 82 28 95 45
+            C101 52 101 57 101 60Z"
+            fill="#64ddff"/>
+
+            <circle cx="137"
+                    cy="73"
+                    r="5"
+                    fill="white"/>
+
+            <circle cx="139"
+                    cy="73"
+                    r="2"
+                    fill="#00111f"/>
+
+        </svg>
+    </div>
+
+    <h1>REFER & EARN</h1>
+
+    <p>
+        Invite your friends to ORCA Mining
+        and earn coins together.
+    </p>
+
+    <div class="reward">
+        REWARD PER FRIEND
+        <b>+1,000 COINS</b>
+    </div>
+
+    <div class="stats">
+
+        <div class="stat">
+            <strong id="friends">0</strong>
+            <span>FRIENDS</span>
+        </div>
+
+        <div class="stat">
+            <strong id="earned">0</strong>
+            <span>COINS EARNED</span>
+        </div>
+
+    </div>
+
+    <div class="refbox">
+
+        <label>YOUR REFERRAL LINK</label>
+
+        <div class="refrow">
+
+            <input
+                id="refLink"
+                readonly>
+
+            <button
+                class="copy"
+                onclick="copyLink()">
+                COPY
+            </button>
+
+        </div>
+
+        <button
+            class="invite"
+            onclick="inviteFriends()">
+
+            📤 INVITE FRIENDS
+
+        </button>
+
+    </div>
+
+    <a
+        class="channel"
+        href="https://t.me/orcamining"
+        target="_blank">
+
+        📢 JOIN ORCA MINING CHANNEL
+
+    </a>
+
+</div>
+
+
+<div class="card">
+
+    <div class="list-title">
+        👥 YOUR REFERRALS
+    </div>
+
+    <div id="friendList">
+
+        <div class="friend">
+
+            <div class="avatar">
+                👤
+            </div>
+
+            <div class="friend-info">
+                <b>No referrals yet</b>
+                <span>
+                    Invite friends to start earning.
+                </span>
+            </div>
+
+            <div class="friend-reward">
+                +0
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="nav">
+
+    <a href="index.html">
+        <div>⛏️</div>
+        Mining
+    </a>
+
+    <a href="upgrade.html">
+        <div>⚡</div>
+        Upgrade
+    </a>
+
+    <a href="referral.html"
+       class="active">
+        <div>👥</div>
+        Referral
+    </a>
+
+    <a href="ranking.html">
+        <div>🏆</div>
+        Ranking
+    </a>
+
+</div>
+
+
+<script>
+
+/* =========================
+   REFERRAL SYSTEM
+========================= */
+
+let referralCode =
+    localStorage.getItem("orcaReferralCode");
+
+if(!referralCode){
+
+    referralCode =
+        "ORCA" +
+        Math.random()
+        .toString(36)
+        .substring(2,8)
+        .toUpperCase();
+
+    localStorage.setItem(
+        "orcaReferralCode",
+        referralCode
+    );
+}
+
+
+/*
+   IMPORTANT:
+
+   For Telegram Mini App,
+   replace YOUR_BOT_USERNAME
+   with your real BotFather bot username.
+*/
+
+const botUsername = "YOUR_BOT_USERNAME";
+
+const referralLink =
+    "https://t.me/" +
+    botUsername +
+    "?start=" +
+    referralCode;
+
+document.getElementById("refLink").value =
+    referralLink;
+
+
+/* =========================
+   LOCAL DEMO DATA
+========================= */
+
+let friends =
+    Number(localStorage.getItem("orcaFriends")) || 0;
+
+let earned =
+    Number(localStorage.getItem("orcaReferralEarned")) || 0;
+
+document.getElementById("friends").innerText =
+    friends;
+
+document.getElementById("earned").innerText =
+    earned.toLocaleString();
+
+
+/* =========================
+   COPY
+========================= */
+
+function copyLink(){
+
+    const input =
+        document.getElementById("refLink");
+
+    navigator.clipboard
+        .writeText(input.value)
+        .then(() => {
+
+            alert(
+                "✅ Referral link copied!"
+            );
+
+        })
+        .catch(() => {
+
+            input.select();
+            document.execCommand("copy");
+
+            alert(
+                "✅ Referral link copied!"
+            );
+
+        });
+}
+
+
+/* =========================
+   INVITE
+========================= */
+
+function inviteFriends(){
+
+    const text =
+        "🚀 Join ORCA Mining!\n\n" +
+        "Start mining coins and earn " +
+        "more rewards.\n\n" +
+        "🎁 Referral Bonus: 1,000 COINS\n\n" +
+        referralLink;
+
+    if(navigator.share){
+
+        navigator.share({
+            title:"ORCA Mining",
+            text:text
+        });
+
+    }else{
+
+        copyLink();
+
+    }
+}
+
+</script>
+
+</body>
+</html>
