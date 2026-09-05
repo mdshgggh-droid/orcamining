@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ORCA Mining - Withdraw</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    min-height:100vh;
+    padding-bottom:95px;
+    font-family:Arial,sans-serif;
+    color:white;
+
+    background:
+    radial-gradient(circle at top,#18263d 0%,#080b12 48%,#030407 100%);
+}
+
+/* HEADER */
+
+.header{
+    text-align:center;
+    padding:25px 15px 12px;
+}
+
+.logo{
+    color:#ffd84d;
+    font-size:28px;
+    font-weight:900;
+    letter-spacing:2px;
+    text-shadow:0 0 18px #ffb300;
+}
+
+.subtitle{
+    color:#8f9bad;
+    font-size:13px;
+    margin-top:7px;
+}
+
+/* MAIN CARD */
+
+.card{
+    margin:18px 15px;
+    padding:25px 20px;
+    border-radius:25px;
+
+    border:1px solid #343e50;
+
+    background:
+    linear-gradient(145deg,#171e2b,#090d14);
+
+    box-shadow:
+    0 12px 40px #000b;
+
+    text-align:center;
+}
+
+/* LOCK */
+
+.lock{
+    width:100px;
+    height:100px;
+    margin:10px auto 20px;
+
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:48px;
+
+    background:
+    radial-gradient(circle,#ffd84d33,#ffd84d08);
+
+    border:2px solid #ffd84d66;
+
+    box-shadow:
+    0 0 35px #ffd84d22;
+}
+
+/* TITLE */
+
+.card h1{
+    font-size:27px;
+    font-weight:900;
+    color:#ffd84d;
+
+    text-shadow:
+    0 0 15px #ffb30066;
+}
+
+.coming{
+    margin-top:9px;
+
+    color:#67d8ff;
+
+    font-size:18px;
+    font-weight:900;
+    letter-spacing:1px;
+}
+
+/* DESCRIPTION */
+
+.description{
+    color:#929db0;
+    font-size:13px;
+    line-height:1.6;
+
+    margin-top:13px;
+}
+
+/* BALANCE */
+
+.balance{
+    margin-top:22px;
+
+    padding:17px;
+
+    border-radius:17px;
+
+    background:#070a10;
+
+    border:1px solid #293344;
+}
+
+.balance span{
+    color:#818c9e;
+    font-size:11px;
+}
+
+.balance h2{
+    margin-top:6px;
+
+    color:#ffd84d;
+
+    font-size:27px;
+}
+
+/* LOCKED BUTTON */
+
+.withdraw-btn{
+    width:100%;
+
+    margin-top:18px;
+
+    padding:16px;
+
+    border:none;
+
+    border-radius:15px;
+
+    background:
+    linear-gradient(135deg,#252d3b,#171d27);
+
+    color:#687487;
+
+    font-size:15px;
+
+    font-weight:900;
+
+    cursor:not-allowed;
+
+    border:1px solid #3a4557;
+}
+
+/* INFO */
+
+.info{
+    margin:18px 15px;
+    padding:18px;
+
+    border-radius:18px;
+
+    background:#0b1018;
+
+    border:1px solid #293343;
+}
+
+.info-title{
+    color:#ffd84d;
+    font-size:15px;
+    font-weight:900;
+    margin-bottom:10px;
+}
+
+.info p{
+    color:#8c97a9;
+    font-size:12px;
+    line-height:1.7;
+}
+
+/* CHANNEL */
+
+.channel{
+    display:block;
+
+    margin:18px 15px;
+
+    padding:15px;
+
+    border-radius:15px;
+
+    text-align:center;
+
+    text-decoration:none;
+
+    color:white;
+
+    font-weight:900;
+
+    background:
+    linear-gradient(135deg,#008cff,#0058ff);
+
+    box-shadow:
+    0 6px 22px #006eff55;
+}
+
+/* NAVIGATION */
+
+.nav{
+    position:fixed;
+
+    left:0;
+    right:0;
+    bottom:0;
+
+    height:80px;
+
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+
+    background:#080b12ee;
+
+    backdrop-filter:blur(16px);
+
+    border-top:1px solid #293142;
+
+    z-index:100;
+}
+
+.nav a{
+    text-decoration:none;
+
+    color:#8994a7;
+
+    text-align:center;
+
+    font-size:11px;
+}
+
+.nav a div{
+    font-size:24px;
+    margin-bottom:4px;
+}
+
+.nav .active{
+    color:#ffd84d;
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- HEADER -->
+
+<div class="header">
+
+    <div class="logo">
+        ORCA MINING
+    </div>
+
+    <div class="subtitle">
+        Secure Withdrawal System
+    </div>
+
+</div>
+
+
+<!-- WITHDRAW CARD -->
+
+<div class="card">
+
+    <div class="lock">
+        🔒
+    </div>
+
+    <h1>
+        WITHDRAW
+    </h1>
+
+    <div class="coming">
+        COMING SOON
+    </div>
+
+    <div class="description">
+
+        The withdrawal system is currently
+        locked.
+
+        <br>
+
+        Keep mining and collecting your
+        ORCA coins.
+
+        <br>
+
+        Withdrawal will be available soon.
+
+    </div>
+
+
+    <!-- BALANCE -->
+
+    <div class="balance">
+
+        <span>
+            AVAILABLE BALANCE
+        </span>
+
+        <h2 id="balance">
+            0 COINS
+        </h2>
+
+    </div>
+
+
+    <!-- LOCKED BUTTON -->
+
+    <button
+        class="withdraw-btn"
+        disabled>
+
+        🔒 WITHDRAW LOCKED
+
+    </button>
+
+</div>
+
+
+<!-- INFORMATION -->
+
+<div class="info">
+
+    <div class="info-title">
+        ℹ️ WITHDRAWAL STATUS
+    </div>
+
+    <p>
+
+        Withdrawal is temporarily unavailable.
+
+        <br>
+
+        The system will be opened after
+        the official launch.
+
+        <br>
+
+        Please continue mining and upgrading
+        your mining power.
+
+    </p>
+
+</div>
+
+
+<!-- TELEGRAM -->
+
+<a
+    class="channel"
+    href="https://t.me/orcamining"
+    target="_blank">
+
+    📢 JOIN ORCA MINING CHANNEL
+
+</a>
+
+
+<!-- BOTTOM NAV -->
+
+<div class="nav">
+
+    <a href="index.html">
+
+        <div>⛏️</div>
+
+        Mining
+
+    </a>
+
+
+    <a href="upgrade.html">
+
+        <div>⚡</div>
+
+        Upgrade
+
+    </a>
+
+
+    <a href="referral.html">
+
+        <div>👥</div>
+
+        Referral
+
+    </a>
+
+
+    <a
+        href="withdraw.html"
+        class="active">
+
+        <div>💰</div>
+
+        Withdraw
+
+    </a>
+
+</div>
+
+
+<script>
+
+/* ==========================
+   BALANCE SYNC
+========================== */
+
+let balance =
+    Number(
+        localStorage.getItem("orcaBalance")
+    ) || 0;
+
+
+document.getElementById("balance")
+.innerText =
+    Math.floor(balance)
+    .toLocaleString()
+    + " COINS";
+
+
+</script>
+
+</body>
+</html>
