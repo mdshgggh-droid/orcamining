@@ -1,4 +1,6 @@
 import os
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup
+from telegram.ext import CallbackQueryHandler
 import threading
 import logging
 
