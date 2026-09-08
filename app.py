@@ -20,7 +20,19 @@ app = Flask(__name__)
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     print("START COMMAND RECEIVED")
-    await update.message.reply_text("✅ Welcome to BD Trusted Task!")
+
+keyboard = [
+    [InlineKeyboardButton("📋 Tasks", callback_data="tasks")],
+    [InlineKeyboardButton("💰 Balance", callback_data="balance")],
+    [InlineKeyboardButton("📤 Submit Proof", callback_data="proof")],
+    [InlineKeyboardButton("💸 Withdraw", callback_data="withdraw")],
+    [InlineKeyboardButton("👥 Referral", callback_data="referral")]
+]
+
+await update.message.reply_text(
+    "✅ Welcome to BD Trusted Task!",
+    reply_markup=InlineKeyboardMarkup(keyboard)
+)
 
 
 async def run_bot():
