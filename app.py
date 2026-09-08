@@ -17,5 +17,6 @@ bot.add_handler(CommandHandler("start", start))
 def home():
     return "Bot is running"
 
-if __name__ == "__main__":
-    bot.run_polling()
+if __if __name__ == "__main__":
+    __import__("threading").Thread(target=lambda: bot.run_polling(), daemon=True).start()
+    app.run(host="0.0.0.0", port=int(os.getenv("PORT", "10000")))
